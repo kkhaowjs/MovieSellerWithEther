@@ -89,3 +89,31 @@ footer {
     padding: 10px 0;
     text-align: center;
 }
+
+.table-container {
+    width: 50%;
+    margin: 0 auto; /* This centers the container horizontally */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #dddddd;
+    padding: 8px;
+    text-align: left;
+}
+
+thead th {
+    background-color: #cbcbcb; /* Background color for header cells */
+} 
+
+tbody tr:nth-child(even) {
+    background-color: #eeeeee; /* Light gray background for even rows */
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #ffffff; /* White background for odd rows */
+}
