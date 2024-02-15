@@ -28,7 +28,7 @@
                     <span>2019 | Maturity Rating:18+ | 1h 34m | Thriller</span>
                     <p>A slab of food descends floor by floor in a prison. The inmates above eat heartily, leaving those
                         below starving and desperate. A rebellion is imminent.</p>
-                    <button id="document1" onclick="btnPurchase('The Platform',0.5)">- $0.5 ether - Purchase
+                    <button id="movie1">- $0.5 ether - Purchase
                         Now</button>
                 </div>
                 <div class="movie">
@@ -37,7 +37,7 @@
                     <span>2019 | Maturity Rating:16+ | 2h 6m | Comedy</span>
                     <p>One by one, the crafty members of a destitute family insinuate themselves into the household
                         staff of a wealthy couple living in oblivious privilege.</p>
-                    <button id="document1" onclick="btnPurchase('Parasite',0.7)">- $0.7 ether - Purchase Now</button>
+                    <button id="movie2">- $0.7 ether - Purchase Now</button>
                 </div>
                 <div class="movie">
                     <img src="image/movie3.jpg" alt="THE SHALLOWS">
@@ -45,7 +45,7 @@
                     <span>2016 | Maturity Rating:16+ | 1h 26m | Drama</span>
                     <p>After being bitten by a great white shark, a young surfer is stranded on a rock close to shore
                         and must outwit the predator that stalks nearby.</p>
-                    <button id="document1" onclick="btnPurchase('THE SHALLOWS',0.45)">- $0.45 ether - Purchase
+                    <button id="movie3">- $0.45 ether - Purchase
                         Now</button>
                 </div>
                 <div class="movie">
@@ -54,7 +54,7 @@
                     <span>2014 | Maturity Rating:16+ | 1h 45m | Drama</span>
                     <p>With a caring husband, two kids and a great career, Zoe has it all, until she develops an
                         insatiable hunger for sex with other men.</p>
-                    <button id="document1" onclick="btnPurchase('ADDICTED',0.35)">- $0.35 ether - Purchase Now</button>
+                    <button id="movie4">- $0.35 ether - Purchase Now</button>
                 </div>
                 <div class="movie">
                     <img src="image/movie5.jpg" alt="Bird Box Barcelona">
@@ -62,7 +62,7 @@
                     <span>2023 | Maturity Rating:16+ | 1h 51m | Thriller</span>
                     <p>As a mysterious force decimates humanity, a sinister new threat grows in this Barcelona-set film
                         that expands the story of the blockbuster "Bird Box."</p>
-                    <button id="document1" onclick="btnPurchase('Bird Box Barcelona',0.5)">- $0.5 ether - Purchase
+                    <button id="movie5">- $0.5 ether - Purchase
                         Now</button>
                 </div>
                 <div class="movie">
@@ -71,7 +71,7 @@
                     <span>2016 | Maturity Rating:16+ | 1h 57m | Thriller</span>
                     <p>Three girls are kidnapped by a man with a diagnosed 23 distinct personalities. They must try to
                         escape before the apparent emergence of a frightful new 24th.</p>
-                    <button id="document1" onclick="btnPurchase('Split',0.65)">- $0.65 ether - Purchase Now</button>
+                    <button id="movie6">- $0.65 ether - Purchase Now</button>
                 </div>
             </div>
         </div>
@@ -95,7 +95,7 @@
                 </tr>
                 <tr>
                     <td id="time3"> </td>
-                    <td id="room3"> </td>
+                    <td id="movie3"> </td>
                     <td id="owner3"> </td>
                 </tr>
                 <tr>
@@ -126,73 +126,84 @@
     <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"></script>
     <script>
 
-        // ===Connecting to MetaMask===
         function loadWeb3() {
             if (window.ethereum) {
+                // To get web3(.js) object
                 web3 = new Web3(window.ethereum);
+
+                // To request user's account from Metamask
                 ethereum
                     .request({ method: 'eth_requestAccounts' })
                     .then(handleAccountsChanged)
                     .catch((err) => {
                         if (err.code === 4001) {
+                            // If this happens, the user rejected the connection request.
                             console.log('Please connect to MetaMask.');
                         } else {
                             console.error(err);
                         }
                     });
-            } else {
-                console.log('MetaMask extension not detected. Please install MetaMask.');
             }
         }
 
+        // ===Handle user accounts and accountsChanged===
         let currentAccount = null;
 
-        window.ethereum.on('accountsChanged', handleAccountsChanged);
-
+        // Note that this event is emitted on page load.
+        // If the array of accounts is non-empty, you're already connected.
+        if (typeof window.ethereum !== 'undefined') {
+            // MetaMask is installed, proceed with your code
+            window.ethereum.on('accountsChanged', handleAccountsChanged);
+        } else {
+            // MetaMask is not installed or not initialized
+            console.log('MetaMask extension not detected. Please install MetaMask.');
+            // You can provide a message to the user or handle the scenario accordingly
+        }
+        // For now, 'eth_accounts' will continue to always return an array
         function handleAccountsChanged(accounts) {
             if (accounts.length === 0) {
+                // MetaMask is locked or the user has not connected any accounts
                 console.log('Please connect to MetaMask.');
             } else if (accounts[0] !== currentAccount) {
                 currentAccount = accounts[0];
-                console.log('Current account changed:', currentAccount);
             }
         }
 
         // Contract ABI (Application Binary Interface)
         let abi = [
-        {
-            "anonymous": false,
-            "inputs": [
-                {
-                    "indexed": false,
-                    "internalType": "address",
-                    "name": "owner",
-                    "type": "address"
-                },
-                {
-                    "indexed": false,
-                    "internalType": "string",
-                    "name": "movie",
-                    "type": "string"
-                }
-            ],
-            "name": "Add",
-            "type": "event"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "string",
-                    "name": "name",
-                    "type": "string"
-                }
-            ],
-            "name": "reserve",
-            "outputs": [],
-            "stateMutability": "payable",
-            "type": "function"
-        }
-    ];
+            {
+                "anonymous": false,
+                "inputs": [
+                    {
+                        "indexed": false,
+                        "internalType": "address",
+                        "name": "owner",
+                        "type": "address"
+                    },
+                    {
+                        "indexed": false,
+                        "internalType": "string",
+                        "name": "movie",
+                        "type": "string"
+                    }
+                ],
+                "name": "Add",
+                "type": "event"
+            },
+            {
+                "inputs": [
+                    {
+                        "internalType": "string",
+                        "name": "name",
+                        "type": "string"
+                    }
+                ],
+                "name": "reserve",
+                "outputs": [],
+                "stateMutability": "payable",
+                "type": "function"
+            }
+        ];
 
         // Load Contract
         async function loadContract() {
@@ -210,28 +221,63 @@
             statusEl.innerHTML = status;
             console.log(status);
         }
-        var i = 0;
-        async function btnPurchase(p, V) {
+        $("#movie1").click(function () {
+            handleBuy("The Platform", "0.5");
+        });
+        $("#movie2").click(function () {
+            handleBuy("Parasite", "0.7");
+        });
+        $("#movie3").click(function () {
+            handleBuy("THE SHALLOWS", "0.45");
+        });
+        $("#movie4").click(function () {
+            handleBuy("ADDICTED", "0.35");
+        });
+        $("#movie5").click(function () {
+            handleBuy("Bird Box Barcelona", "0.5");
+        });
+        $("#movie6").click(function () {
+            handleBuy("Split", "0.65");
+        });
+
+        let index = 0;
+
+        async function handleBuy(movie, price) {
             console.log(currentAccount);
-            window.contract.methods.reserve(p).send({ from: currentAccount, value: v }, function (error, result) {
-                $("#result").html(result);
-            });
-            window.contract.once("Add", {}, function (error, event) {
+            const currentTime = new Date();
+            const formattedTime = currentTime.toLocaleTimeString();
+
+            web3.contract.methods.reserve(movie)
+                .send({
+                    from: currentAccount,
+                    value: web3.utils.toWei(price, "ether")
+                }, function (error, result) {
+                    if (error) {
+                        console.log('Transaction cancelled.');
+                        if (index == 0) {
+                            index = 0
+                            console.log(index)
+                        } else if (index > 0) {
+                            index--;
+                            console.log(index)
+                        }
+                    } else {
+                        $(`#result${index}`).html(result);
+                        isTransactionConfirmed = true;
+                    }
+                });
+
+            web3.contract.once('Add', {}, function (error, event) {
                 if (!error) {
                     console.log(event);
-                    var h = new Date().getHours()
-                    var m = new Date().getMinutes()
-                    $("#result").html("movie:" + event.returnValues.movie + "<br/>time:" + h + ":" + m  + "<br/>owner:" + event.returnValues.owner);
-                    i++;
-                    $("#time" + i).html(h + ":" + m);
-                    $("#movie" + i).html(event.returnValues.movie)
-                    $("#owner" + i).html(event.returnValues.owner)
+                    $(`#movie${index}`).html(movie);
+                    $(`#time${index}`).html(formattedTime);
+                    $(`#result${index}`).html(currentAccount);
                 }
-                else{
-                    console.log(error)
-                }
-            })
-        };
+            });
+
+            index++;
+        }
         load();
     </script>
 
