@@ -23,52 +23,55 @@
             <h1>Welcome to MovieLand</h1>
             <div class="movie-container">
                 <div class="movie">
-                    <img src="image/movie1.jpg" alt="Movie 1">
+                    <img src="image/movie1.jpg" alt="The Platform">
                     <h2>The Platform</h2>
                     <span>2019 | Maturity Rating:18+ | 1h 34m | Thriller</span>
                     <p>A slab of food descends floor by floor in a prison. The inmates above eat heartily, leaving those
                         below starving and desperate. A rebellion is imminent.</p>
-                    <button id="document1" onclick="btnPurchase('The Platform',0.5)">- $0.5 ether - Purchase Now</button>
+                    <button id="document1" onclick="btnPurchase('The Platform',0.5)">- $0.5 ether - Purchase
+                        Now</button>
                 </div>
                 <div class="movie">
-                    <img src="image/movie2.jpg" alt="Movie 2">
-                    <h2>Parasit</h2>
+                    <img src="image/movie2.jpg" alt="Parasite">
+                    <h2>Parasite</h2>
                     <span>2019 | Maturity Rating:16+ | 2h 6m | Comedy</span>
                     <p>One by one, the crafty members of a destitute family insinuate themselves into the household
                         staff of a wealthy couple living in oblivious privilege.</p>
-                    <button>- $0.7 ether - Purchase Now</button>
+                    <button id="document1" onclick="btnPurchase('Parasite',0.5)">- $0.7 ether - Purchase Now</button>
                 </div>
                 <div class="movie">
-                    <img src="image/movie3.jpg" alt="Movie 3">
+                    <img src="image/movie3.jpg" alt="THE SHALLOWS">
                     <h2>THE SHALLOWS</h2>
                     <span>2016 | Maturity Rating:16+ | 1h 26m | Drama</span>
                     <p>After being bitten by a great white shark, a young surfer is stranded on a rock close to shore
                         and must outwit the predator that stalks nearby.</p>
-                    <button>- $0.45 ether - Purchase Now</button>
+                    <button id="document1" onclick="btnPurchase('THE SHALLOWS',0.5)">- $0.45 ether - Purchase
+                        Now</button>
                 </div>
                 <div class="movie">
-                    <img src="image/movie4.jpg" alt="Movie 4">
+                    <img src="image/movie4.jpg" alt="ADDICTED">
                     <h2>ADDICTED</h2>
                     <span>2014 | Maturity Rating:16+ | 1h 45m | Drama</span>
                     <p>With a caring husband, two kids and a great career, Zoe has it all, until she develops an
                         insatiable hunger for sex with other men.</p>
-                    <button>- $0.35 ether - Purchase Now</button>
+                    <button id="document1" onclick="btnPurchase('ADDICTED',0.5)">- $0.35 ether - Purchase Now</button>
                 </div>
                 <div class="movie">
-                    <img src="image/movie5.jpg" alt="Movie 5">
+                    <img src="image/movie5.jpg" alt="Bird Box Barcelona">
                     <h2>Bird Box Barcelona</h2>
                     <span>2023 | Maturity Rating:16+ | 1h 51m | Thriller</span>
                     <p>As a mysterious force decimates humanity, a sinister new threat grows in this Barcelona-set film
                         that expands the story of the blockbuster "Bird Box."</p>
-                    <button>- $0.5 ether - Purchase Now</button>
+                    <button id="document1" onclick="btnPurchase('Bird Box Barcelona',0.5)">- $0.5 ether - Purchase
+                        Now</button>
                 </div>
                 <div class="movie">
-                    <img src="image/movie6.jpg" alt="Movie 6">
+                    <img src="image/movie6.jpg" alt="Split">
                     <h2>Split</h2>
                     <span>2016 | Maturity Rating:16+ | 1h 57m | Thriller</span>
                     <p>Three girls are kidnapped by a man with a diagnosed 23 distinct personalities. They must try to
                         escape before the apparent emergence of a frightful new 24th.</p>
-                    <button>- $0.65 ether - Purchase Now</button>
+                    <button id="document1" onclick="btnPurchase('Split',0.5)">- $0.65 ether - Purchase Now</button>
                 </div>
             </div>
         </div>
@@ -126,7 +129,7 @@
         // ===Connecting to MetaMask===
         function loadWeb3() {
             if (window.ethereum) {
-                window.web3 = new Web3(ethereum);
+                window.web3 = new Web3(window.ethereum);
                 window.ethereum.enable();
                 ethereum
                     .request({ method: 'eth_requestAccounts' })
@@ -141,21 +144,25 @@
                             console.error(err);
                         }
                     });
+                window.ethereum.on('accountsChanged', handleAccountsChanged);
             } else {
                 console.log('MetaMask extension not detected. Please install MetaMask.');
             }
-            let currentAccount = null;
-            ethereum.on('accountsChanged', handleAccountsChanged);
+        }
 
-            function handleAccountsChanged(accounts) {
-                if (accounts.length === 0) {
-                    console.log('Please connect to MetaMask.');
-                } else if (accounts[0] !== currentAccount) {
-                    currentAccount = accounts[0];
-                    console.log('Current account changed:', currentAccount);
-                }
+        let currentAccount = null;
+
+        function handleAccountsChanged(accounts) {
+            if (accounts.length === 0) {
+                console.log('Please connect to MetaMask.');
+            } else if (accounts[0] !== currentAccount) {
+                currentAccount = accounts[0];
+                console.log('Current account changed:', currentAccount);
             }
         }
+
+        // Call loadWeb3() function to initiate connection to MetaMask
+        loadWeb3();
 
         // Contract ABI (Application Binary Interface)
         let abi = [{
