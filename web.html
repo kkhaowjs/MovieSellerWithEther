@@ -23,80 +23,93 @@
             <h1>Welcome to MovieLand</h1>
             <div class="movie-container">
                 <div class="movie">
-                    <img src="movie1.jpg" alt="Movie 1">
+                    <img src="image/movie1.jpg" alt="Movie 1">
                     <h2>The Platform</h2>
                     <span>2019 | Maturity Rating:18+ | 1h 34m | Thriller</span>
-                    <p>A slab of food descends floor by floor in a prison. The inmates above eat heartily, leaving those below starving and desperate. A rebellion is imminent.</p>
-                    <button>Buy Now</button>
+                    <p>A slab of food descends floor by floor in a prison. The inmates above eat heartily, leaving those
+                        below starving and desperate. A rebellion is imminent.</p>
+                    <button onclick="btnPurchase('The Platform',0.5)">- $0.5 ether - Purchase Now</button>
                 </div>
                 <div class="movie">
-                    <img src="movie2.jpg" alt="Movie 2">
+                    <img src="image/movie2.jpg" alt="Movie 2">
                     <h2>Parasit</h2>
                     <span>2019 | Maturity Rating:16+ | 2h 6m | Comedy</span>
-                    <p>One by one, the crafty members of a destitute family insinuate themselves into the household staff of a wealthy couple living in oblivious privilege.</p>
-                    <button>Buy Now</button>
+                    <p>One by one, the crafty members of a destitute family insinuate themselves into the household
+                        staff of a wealthy couple living in oblivious privilege.</p>
+                    <button>- $0.7 ether - Purchase Now</button>
                 </div>
                 <div class="movie">
-                    <img src="movie3.jpg" alt="Movie 3">
+                    <img src="image/movie3.jpg" alt="Movie 3">
                     <h2>THE SHALLOWS</h2>
                     <span>2016 | Maturity Rating:16+ | 1h 26m | Drama</span>
-                    <p>After being bitten by a great white shark, a young surfer is stranded on a rock close to shore and must outwit the predator that stalks nearby.</p>
-                    <button>Buy Now</button>
+                    <p>After being bitten by a great white shark, a young surfer is stranded on a rock close to shore
+                        and must outwit the predator that stalks nearby.</p>
+                    <button>- $0.45 ether - Purchase Now</button>
                 </div>
                 <div class="movie">
-                    <img src="movie4.jpg" alt="Movie 4">
+                    <img src="image/movie4.jpg" alt="Movie 4">
                     <h2>ADDICTED</h2>
                     <span>2014 | Maturity Rating:16+ | 1h 45m | Drama</span>
-                    <p>With a caring husband, two kids and a great career, Zoe has it all, until she develops an insatiable hunger for sex with other men.</p>
-                    <button>Buy Now</button>
+                    <p>With a caring husband, two kids and a great career, Zoe has it all, until she develops an
+                        insatiable hunger for sex with other men.</p>
+                    <button>- $0.35 ether - Purchase Now</button>
                 </div>
                 <div class="movie">
-                    <img src="movie5.jpg" alt="Movie 5">
+                    <img src="image/movie5.jpg" alt="Movie 5">
                     <h2>Bird Box Barcelona</h2>
                     <span>2023 | Maturity Rating:16+ | 1h 51m | Thriller</span>
-                    <p>As a mysterious force decimates humanity, a sinister new threat grows in this Barcelona-set film that expands the story of the blockbuster "Bird Box."</p>
-                    <button>Buy Now</button>
+                    <p>As a mysterious force decimates humanity, a sinister new threat grows in this Barcelona-set film
+                        that expands the story of the blockbuster "Bird Box."</p>
+                    <button>- $0.5 ether - Purchase Now</button>
                 </div>
                 <div class="movie">
-                    <img src="movie6.jpg" alt="Movie 6">
+                    <img src="image/movie6.jpg" alt="Movie 6">
                     <h2>Split</h2>
                     <span>2016 | Maturity Rating:16+ | 1h 57m | Thriller</span>
-                    <p>Three girls are kidnapped by a man with a diagnosed 23 distinct personalities. They must try to escape before the apparent emergence of a frightful new 24th.</p>
-                    <button>Buy Now</button>
+                    <p>Three girls are kidnapped by a man with a diagnosed 23 distinct personalities. They must try to
+                        escape before the apparent emergence of a frightful new 24th.</p>
+                    <button>- $0.65 ether - Purchase Now</button>
                 </div>
             </div>
         </div>
-        <div class="table-container" style="margin-top: 50px;"> <!-- Mocking up some data -->
+        <div class="table-container" style="margin-top: 50px;">
             <h1>Buying Table</h1>
             <table>
-                <thead>
-                    <tr>
-                        <th>Time</th>
-                        <th>Title</th>
-                        <th>Owner (Address)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th>10:13</th>
-                        <th>Split</th>
-                        <th>0xBDBD</th>
-                    </tr>
-                </tbody>
-                <tbody>
-                    <tr>
-                        <th>10:22</th>
-                        <th>Parasite</th>
-                        <th>0xAAAA</th>
-                    </tr>
-                </tbody>
-                <!-- <tbody>
-                    <tr>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                    </tr>
-                </tbody> -->
+                <tr>
+                    <th>Time</th>
+                    <th>Movie</th>
+                    <th>Owner</th>
+                </tr>
+                <tr>
+                    <td id="time1"> </td>
+                    <td id="movie1"> </td>
+                    <td id="owner1"> </td>
+                </tr>
+                <tr>
+                    <td id="time2"> </td>
+                    <td id="movie2"> </td>
+                    <td id="owner2"> </td>
+                </tr>
+                <tr>
+                    <td id="time3"> </td>
+                    <td id="room3"> </td>
+                    <td id="owner3"> </td>
+                </tr>
+                <tr>
+                    <td id="time4"> </td>
+                    <td id="movie4"> </td>
+                    <td id="owner4"> </td>
+                </tr>
+                <tr>
+                    <td id="time5"> </td>
+                    <td id="movie5"> </td>
+                    <td id="owner5"> </td>
+                </tr>
+                <tr>
+                    <td id="time6"> </td>
+                    <td id="movie6"> </td>
+                    <td id="owner6"> </td>
+                </tr>
             </table>
         </div>
     </main>
@@ -109,24 +122,20 @@
 
     <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"></script>
     <script>
-    
+
         // ===Connecting to MetaMask===
         function loadWeb3() {
             if (window.ethereum) {
-                // To get web3(.js) object
                 window.web3 = new Web3(ethereum);
-                
-                // To request user's account from Metamask
+                window.ethereum.enable();
                 ethereum
-                    .request({ method: 'eth_requestAccounts' })           
+                    .request({ method: 'eth_requestAccounts' })
                     .then(accounts => {
-                        // This callback is executed if the user approves the connection
                         currentAccount = accounts[0];
                         console.log('Connected to MetaMask. Current account:', currentAccount);
                     })
                     .catch((err) => {
                         if (err.code === 4001) {
-                            // If this happens, the user rejected the connection request.
                             console.log('Please connect to MetaMask.');
                         } else {
                             console.error(err);
@@ -135,62 +144,92 @@
             } else {
                 console.log('MetaMask extension not detected. Please install MetaMask.');
             }
-        }
-        
-        // ===Handle user accounts and accountsChanged===
-        let currentAccount = null;
-        
-        // Note that this event is emitted on page load.
-        // If the array of accounts is non-empty, you're already connected.
-        ethereum.on('accountsChanged', handleAccountsChanged);
-    
-        function handleAccountsChanged(accounts) {
-            if (accounts.length === 0) {
-                // MetaMask is locked or the user has not connected any accounts
-                console.log('Please connect to MetaMask.');
-            } else if (accounts[0] !== currentAccount) {
-                currentAccount = accounts[0];
-                console.log('Current account changed:', currentAccount);
+            let currentAccount = null;
+            ethereum.on('accountsChanged', handleAccountsChanged);
+
+            function handleAccountsChanged(accounts) {
+                if (accounts.length === 0) {
+                    console.log('Please connect to MetaMask.');
+                } else if (accounts[0] !== currentAccount) {
+                    currentAccount = accounts[0];
+                    console.log('Current account changed:', currentAccount);
+                }
             }
         }
-    
+
         // Contract ABI (Application Binary Interface)
-        let abi = [/* ABI array */];
-        
+        let abi = [{
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": false,
+                    "internalType": "address",
+                    "name": "owner",
+                    "type": "address"
+                },
+                {
+                    "indexed": false,
+                    "internalType": "string",
+                    "name": "movie",
+                    "type": "string"
+                }
+            ],
+            "name": "Add",
+            "type": "event"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "string",
+                    "name": "name",
+                    "type": "string"
+                }
+            ],
+            "name": "purchase",
+            "outputs": [],
+            "stateMutability": "payable",
+            "type": "function"
+        }
+        ];
+
         // Load Contract
         async function loadContract() {
             return await new web3.eth.Contract(abi, 'xxx'); // 'xxx' should be replaced with your contract address
         }
-    
+
         async function load() {
             await loadWeb3();
             web3.contract = await loadContract();
             updateStatus('Ready!');
         }
-        
+
         function updateStatus(status) {
             const statusEl = document.getElementById('status');
             statusEl.innerHTML = status;
             console.log(status);
         }
-    
-        $("#btnRegistration").click(function() {
-            // Code for registration process
-        });
-    
-        $("#btnCheck").click(function() {
-            web3.contract.methods.checkName($("#document2").val()).call(function(error, result){
-                if(!error) {
-                    $("#result").html(result.toString());
-                } else {
-                    console.error(error);
+
+        function btnPurchase(p, V) {
+            console.log(currentAccount);
+            window.contract.method.reserve(p).send({ from: currentAccount, value: v }, function (error, result) {
+                $("#result").html(result);
+            });
+            window.contract.once("Add", {}, function (error, event) {
+                if (!error) {
+                    console.log(event);
+                    var h = new Date().getHours()
+                    var m = new Date().getMinutes()
+                    $("#result").html("Name:" + event.returnValues.movie + "<br/>time:" + h + ":" + m + "<br/>owner:" + event.returnValues.owner);
+                    i++;
+                    $("#time" + i).html(h + ":" + m);
+                    $("#movie" + i).html(event.returnValues.movie)
+                    $("#owner" + i).html(event.returnValues.owner)
                 }
-            });     
-        });
-    
+            })
+        };
         load();
     </script>
-    
+
 </body>
 
 </html>
