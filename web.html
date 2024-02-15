@@ -210,7 +210,7 @@
             statusEl.innerHTML = status;
             console.log(status);
         }
-
+        var i = 0;
         function btnPurchase(p, V) {
             console.log(currentAccount);
             window.contract.method.reserve(p).send({ from: currentAccount, value: v }, function (error, result) {
