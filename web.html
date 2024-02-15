@@ -211,9 +211,9 @@
             console.log(status);
         }
         var i = 0;
-        function btnPurchase(p, V) {
+        async function btnPurchase(p, V) {
             console.log(currentAccount);
-            window.contract.method.reserve(p).send({ from: currentAccount, value: v }, function (error, result) {
+            window.contract.methods.reserve(p).send({ from: currentAccount, value: v }, function (error, result) {
                 $("#result").html(result);
             });
             window.contract.once("Add", {}, function (error, event) {
