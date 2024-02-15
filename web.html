@@ -37,7 +37,7 @@
                     <span>2019 | Maturity Rating:16+ | 2h 6m | Comedy</span>
                     <p>One by one, the crafty members of a destitute family insinuate themselves into the household
                         staff of a wealthy couple living in oblivious privilege.</p>
-                    <button id="document1" onclick="btnPurchase('Parasite',0.5)">- $0.7 ether - Purchase Now</button>
+                    <button id="document1" onclick="btnPurchase('Parasite',0.7)">- $0.7 ether - Purchase Now</button>
                 </div>
                 <div class="movie">
                     <img src="image/movie3.jpg" alt="THE SHALLOWS">
@@ -45,7 +45,7 @@
                     <span>2016 | Maturity Rating:16+ | 1h 26m | Drama</span>
                     <p>After being bitten by a great white shark, a young surfer is stranded on a rock close to shore
                         and must outwit the predator that stalks nearby.</p>
-                    <button id="document1" onclick="btnPurchase('THE SHALLOWS',0.5)">- $0.45 ether - Purchase
+                    <button id="document1" onclick="btnPurchase('THE SHALLOWS',0.45)">- $0.45 ether - Purchase
                         Now</button>
                 </div>
                 <div class="movie">
@@ -54,7 +54,7 @@
                     <span>2014 | Maturity Rating:16+ | 1h 45m | Drama</span>
                     <p>With a caring husband, two kids and a great career, Zoe has it all, until she develops an
                         insatiable hunger for sex with other men.</p>
-                    <button id="document1" onclick="btnPurchase('ADDICTED',0.5)">- $0.35 ether - Purchase Now</button>
+                    <button id="document1" onclick="btnPurchase('ADDICTED',0.35)">- $0.35 ether - Purchase Now</button>
                 </div>
                 <div class="movie">
                     <img src="image/movie5.jpg" alt="Bird Box Barcelona">
@@ -71,7 +71,7 @@
                     <span>2016 | Maturity Rating:16+ | 1h 57m | Thriller</span>
                     <p>Three girls are kidnapped by a man with a diagnosed 23 distinct personalities. They must try to
                         escape before the apparent emergence of a frightful new 24th.</p>
-                    <button id="document1" onclick="btnPurchase('Split',0.5)">- $0.65 ether - Purchase Now</button>
+                    <button id="document1" onclick="btnPurchase('Split',0.65)">- $0.65 ether - Purchase Now</button>
                 </div>
             </div>
         </div>
@@ -129,14 +129,10 @@
         // ===Connecting to MetaMask===
         function loadWeb3() {
             if (window.ethereum) {
-                window.web3 = new Web3(window.ethereum);
-                window.ethereum.enable();
+                web3 = new Web3(window.ethereum);
                 ethereum
                     .request({ method: 'eth_requestAccounts' })
-                    .then(accounts => {
-                        currentAccount = accounts[0];
-                        console.log('Connected to MetaMask. Current account:', currentAccount);
-                    })
+                    .then(handleAccountsChanged)
                     .catch((err) => {
                         if (err.code === 4001) {
                             console.log('Please connect to MetaMask.');
@@ -144,13 +140,14 @@
                             console.error(err);
                         }
                     });
-                window.ethereum.on('accountsChanged', handleAccountsChanged);
             } else {
                 console.log('MetaMask extension not detected. Please install MetaMask.');
             }
         }
 
         let currentAccount = null;
+
+        window.ethereum.on('accountsChanged', handleAccountsChanged);
 
         function handleAccountsChanged(accounts) {
             if (accounts.length === 0) {
@@ -161,11 +158,9 @@
             }
         }
 
-        // Call loadWeb3() function to initiate connection to MetaMask
-        loadWeb3();
-
         // Contract ABI (Application Binary Interface)
-        let abi = [{
+        let abi = [
+        {
             "anonymous": false,
             "inputs": [
                 {
@@ -192,16 +187,16 @@
                     "type": "string"
                 }
             ],
-            "name": "purchase",
+            "name": "reserve",
             "outputs": [],
             "stateMutability": "payable",
             "type": "function"
         }
-        ];
+    ];
 
         // Load Contract
         async function loadContract() {
-            return await new web3.eth.Contract(abi, 'xxx'); // 'xxx' should be replaced with your contract address
+            return await new web3.eth.Contract(abi, '0x10e8c37183b32B70B1F2A5d9CE24898bFFab0f79');
         }
 
         async function load() {
@@ -226,11 +221,14 @@
                     console.log(event);
                     var h = new Date().getHours()
                     var m = new Date().getMinutes()
-                    $("#result").html("Name:" + event.returnValues.movie + "<br/>time:" + h + ":" + m + "<br/>owner:" + event.returnValues.owner);
+                    $("#result").html("movie:" + event.returnValues.movie + "<br/>time:" + h + ":" + m  + "<br/>owner:" + event.returnValues.owner);
                     i++;
                     $("#time" + i).html(h + ":" + m);
                     $("#movie" + i).html(event.returnValues.movie)
                     $("#owner" + i).html(event.returnValues.owner)
+                }
+                else{
+                    console.log(error)
                 }
             })
         };
